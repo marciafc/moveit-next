@@ -44,6 +44,22 @@ Organizar estrutura similar a do projeto moveit, criado anteriormente e copiar a
 
 Reiniciar a aplicação yarn dev
 
+## Arquivo \_document.tsx
+
+Carrega uma única vez
+
+Colocar tudo que é estático, que se mantém em todas as telas
+
+O \_app.tsx é reaproveitado, porém recalculado a cada página acessada (gera processamento a mais).
+
+## CSS Modules
+
+CSS limitado a apenas para um componente. Exemplo ExperienceBar.module.css
+
+## Imagem Github
+
+<img src="https://github.com/nomeusuario.png"/>
+
 ## Demo
 
 Hospedado no Netlify. Para acessar, clique [aqui]()
