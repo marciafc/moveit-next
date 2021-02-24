@@ -58,10 +58,12 @@ CSS limitado a apenas para um componente. Exemplo ExperienceBar.module.css
 
 ## Imagem Github
 
+```
 <img src="https://github.com/nomeusuario.png"/>
+```
 
 ## Demo
 
-Hospedado no Netlify. Para acessar, clique [aqui]()
+Hospedado no Netlify. Para acessar, clique [aqui](https://vigilant-mirzakhani-cf915c.netlify.app)
 
 ## Referências
