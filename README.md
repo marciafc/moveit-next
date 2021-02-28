@@ -1,4 +1,4 @@
-# moveit-next
+# move.it-Next
 
 Aplicação com Next.js
 
@@ -61,6 +61,65 @@ CSS limitado a apenas para um componente. Exemplo ExperienceBar.module.css
 ```
 <img src="https://github.com/nomeusuario.png"/>
 ```
+
+## Escrever condicional sem else
+
+```
+
+{hasFinished ? <p>Terminou...</p> : null}
+
+OU
+
+{hasFinished && <p>Terminou2...</p>}
+
+```
+
+## Fragment
+
+```
+<></>
+
+```
+
+## Hack em css
+
+```
+.challengeActive footer button:hover {
+  filter: brightness(0.9);
+}
+```
+
+## Tópicos de estudo CSS
+
+- Grid
+
+- Flexbox
+
+## Context Api
+
+Fornece uma maneira de passar os dados entre os componentes
+
+Antes resolvia só com Redux
+
+## Definir tipo no Typescript
+
+type ou interface
+
+children?: -> campo opcional
+
+children: -> campo obrigatório
+
+## Cálculo experiência
+
+Baseado em como os RPG calculam
+
+logarítmo ou potência
+
+const experienceToNextLevel = Math.pow((level + 1) \* 4, 2);
+
+level + 1 -> próximo level
+
+4 é o fator de experiência (mais fácil ou mais difícil)
 
 ## Demo
 
