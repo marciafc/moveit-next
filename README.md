@@ -109,11 +109,9 @@ children?: -> campo opcional
 
 children: -> campo obrigatório
 
-## Cálculo experiência
+## Cálculo experiência próximo nível
 
-Baseado em como os RPG calculam
-
-logarítmo ou potência
+Baseado em como os RPG calculam: logarítmo ou potência
 
 const experienceToNextLevel = Math.pow((level + 1) \* 4, 2);
 
@@ -121,8 +119,87 @@ level + 1 -> próximo level
 
 4 é o fator de experiência (mais fácil ou mais difícil)
 
+## Estrutura básica de context
+
+```
+
+import { createContext, ReactNode } from "react";
+
+interface CountdownContextData {
+
+}
+
+interface CountdownProviderProps {
+  children: ReactNode;
+}
+
+const CountdownContext = createContext({} as CountdownContextData);
+
+export function CountdownProvider({ children }: CountdownProviderProps) {
+
+  return (
+    <CountdownContext.Provider value={{}}>
+      {children}
+    </CountdownContext.Provider>
+  );
+}
+
+```
+
+## Definição de provider
+
+Não deve ir por "fora" se houver uma dependência.
+
+E a hierarquia deve respeitar quem usa o contexto de quem.
+
+No caso, **Countdown** usa o contexto do **Challenges**
+
+\_app.tsx
+
+```
+
+<ChallengesProvider>
+  <CountdownProvider>
+    <Component {...pageProps} />
+  </CountdownProvider>
+</ChallengesProvider>
+```
+
+No entanto, CountdownProvider não é usada em toda a app (logo, não precisa estar em \_app.tsx)
+
+Colocamos em torno de onde será utilizado (na home: **index.tsx**):
+
+```
+
+<CountdownProvider>
+    <section>
+      <div>
+        <Profile />
+        <CompletedChallenges />
+        <Countdown />
+      </div>
+      <div>
+        <ChallengeBox />
+      </div>
+    </section>
+</CountdownProvider>
+```
+
+E então remove do \_app.tsx
+
+```
+
+<ChallengesProvider>
+  <Component {...pageProps} />
+</ChallengesProvider>
+
+```
+
 ## Demo
 
 Hospedado no Netlify. Para acessar, clique [aqui](https://vigilant-mirzakhani-cf915c.netlify.app)
 
 ## Referências
+
+- [Notificação Web](https://developer.mozilla.org/pt-BR/docs/Web/API/Notification)
+- [Áudio](https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement/Audio)
