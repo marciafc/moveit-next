@@ -193,6 +193,84 @@ E então remove do \_app.tsx
   <Component {...pageProps} />
 </ChallengesProvider>
 
+
+-> ChallengesProvider passou para index.tsx quando foi utilizado cookies
+
+```
+
+## Storage
+
+- Local Storage: armazena sempre em texto no formato chave, valor
+
+- Session Storage: similar ao Local Storage, mas só existe durante a sessão
+
+- IndexedDB: banco de dados mais completo
+
+- WebSQL: não está disponível em todos os browsers, é similar a um sqlite da vida
+
+- Cookies: similar ao Local Storage, permite definir que um cookie é disponível em um domínio ou mais (local storage é só para um domínio), permite definer quando expira, definir cookie HttpOnly (acessível na camada backend ou fronted - se for true, não consegue acessar diretamente do js no frontend), definir se é Secure (só quando a aplicação tem https), SameSite (cookie disponível no site com o mesmo domínio)
+
+Next.js geralmente usa Cookies para armazenamento de preferências do usuário por exemplo, pois está disponível em todas as camadas da aplicação (backend, frontend, camada intermediária - serviço do Next.js)
+A menos que seja uma informação que só precisa estar disponível na camada visual (browser - Local Storage é específico do browser)
+
+### Biblioteca para salvar cookie
+
+```shell
+
+1. Instalar biblioteca para salvar cookie
+
+  yarn add js-cookie
+
+Adicionar tipagem do js-cookie (foi construída com js e não typescript - aparece três pontinhos quando faz import) a partir de um repositório
+
+  Como localizar tipagens disponíveis:
+
+  a. Em https://www.npmjs.com/package/@types/react é possível encontrar informações de como instalar, inclusive o repositório das tipagens https://github.com/DefinitelyTyped/DefinitelyTyped#readme
+
+  b. Clicar na pasta "types"
+
+2. Instalar tipagem do js-cookie como dependência de desenvolvimento
+
+  yarn add @types/js-cookie -D
+```
+
+Salvando nos Cookies
+
+```
+  useEffect(() => {
+    Cookies.set("level", String(level));
+    Cookies.set("currentExperience", String(currentExperience));
+    Cookies.set("challengesCompleted", String(challengesCompleted));
+  }, [level, currentExperience, challengesCompleted]);
+
+```
+
+-> Não esquecer de dar refresh na aba de cookies quando estiver visualizando no navegador
+
+## getServerSideProps
+
+Só funciona nas "pages", não funciona em outros componentes
+
+```
+
+// Executa no servidor node e não no navegador
+// Ex.: se tiver algum log.console, vai aparecer no terminal do node e não no console do navegador
+
+// Resolve problema de SEO (o motor de busca não espera a página buscar tudo para indexar)
+// Implementando no getServerSideProps, as informações são carregadas antes,
+// resolvendo este problema de SEO
+
+// Deve ter este nome getServerSideProps obrigatoriamente e
+// deve ser async, mesmo que não faça chamada assíncrona
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
+
+  return {
+    props: { level, currentExperience, challengesCompleted },
+  };
+};
+
 ```
 
 ## Demo
