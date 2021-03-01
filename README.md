@@ -1,8 +1,16 @@
-# move.it-Next
+# move.it
 
-Aplicação com Next.js
+O objetivo da aplicação é promover hábitos que melhorem a qualidade de vida de quem fica muitas horas no computador.
+
+Quando o ciclo encerra (após 25 minutos - similar a prática do Pomodoro), é exibida uma notificação textual e com som, informando que há um novo desafio.
+
+O desafio envolve práticas desde alongamentos, fechar os olhos, etc...
+
+A cada desafio completado, o usuário ganha mais xp, podendo subir de level.
 
 ## Criar projeto
+
+Aplicação com Next.js
 
 ```shell
 yarn create next-app moveit-next
@@ -273,11 +281,48 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
 ```
 
+## Alterar o tempo para testes
+
+CountdownContext.tsx
+
+0.1 = 6 segundos
+
+```
+Alterar
+  const [time, setTime] = useState(0.1 * 60);
+
+E
+  setTime(0.1 * 60);
+
+```
+
 ## Demo
 
 Hospedado no Netlify. Para acessar, clique [aqui](https://vigilant-mirzakhani-cf915c.netlify.app)
 
+E no Vercel, clique [aqui](https://moveit-next-ebon.vercel.app)
+
+<img src="./doc/apresentacao.gif">
+
+## Ideias para evoluir a aplicação
+
+- Documentar o projeto: gif, vídeo, prints, etc...
+- Melhorar responsividade
+- Next.js PWA
+- Trocar cores, temas diferentes (dark)
+- Login com Github (oAuth Github com Next)
+- Criar sidebar
+- Hanking
+- Compartilhar no Twitter
+
 ## Referências
 
+- [RocketSeat material sobre Next](https://www.youtube.com/c/RocketSeat/search?query=next)
+
 - [Notificação Web](https://developer.mozilla.org/pt-BR/docs/Web/API/Notification)
+
 - [Áudio](https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement/Audio)
+
+- [Entendendo a Context API do React: criando um componente de loading](https://medium.com/reactbrasil/entendendo-a-context-api-do-react-criando-um-componente-de-loading-a84f84007dc7)
+
+- [TypeScript: O guia definitivo](https://oieduardorabelo.medium.com/typescript-o-guia-definitivo-1a63b04259cc)
